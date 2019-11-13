@@ -1,25 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import InportForm from './Form';
 
 function App() {
+
+  const [teamMember, SetTeamMember] = useState([
+    {
+      name: 'William',
+      email: 'weng7533@gmail.com',
+      role: 'frontend engineer'
+    },
+    {
+      name: 'Coltyn',
+      email: 'coltynwiewel@gmail.com',
+      role: 'frontend engineer'
+    },
+    {
+      name: 'Stella',
+      email: 'coltynwiewel@gmail.com',
+      role: 'frontend engineer'
+    },
+    {
+      name: 'Denise Fafette',
+      email: 'denisefafette@gmail.com',
+      role: 'frontend engineer'
+    },
+  ]
+  )
+
+  // const [memberList, SetMemberList] = useState([])
+
+  const memberAdder = (newMember) => {
+    SetTeamMember([...teamMember, newMember])
+  }
+
+  console.log(teamMember);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+
+      <InportForm SetTeamMember={memberAdder} />
+
+      {
+        teamMember.map((member) =>
+          <div className='NameCard'>
+            <li>Name: {member.name}</li>
+            <li>Email: {member.email}</li>
+            <li>Role: {member.role}</li>
+          </div>
+
+        )
+      }
+
+
     </div>
+
   );
 }
 
